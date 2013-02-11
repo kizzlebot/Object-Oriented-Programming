@@ -1,0 +1,23 @@
+Lecture 12
+Exception Handling
+
+Demonstrates Exception Handling
+Exception - "Special Case"
+Whatever class inherits everything from object's class. 
+throwable
+	- exception
+		- ClassNotFoundException
+		- IOException
+		- AWTException
+			- ArithmeticException
+			- NullPointerException
+			- IndexOutofBoundsException
+			- IllegalArgumentException
+			- ....
+		- RuntimeException
+		- etc...
+	- error 
+		- Linkage Errors
+		- Virtual Machine Errors
+		- AWTError
+		- etc.. 
