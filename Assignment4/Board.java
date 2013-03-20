@@ -108,7 +108,7 @@ public class Board {
 				 break; 
 			 }
 		 }
-		 System.out.println("Moved to random+ "+row+" "+col);
+		 //System.out.println("Moved to random+ "+row+" "+col);
 		 return caveArray[r][c]; 
 	}
 }

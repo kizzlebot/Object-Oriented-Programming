@@ -6,9 +6,10 @@
  *
  */
 public class Filler extends Character {
-	
+	private String desc ;
 	public Filler(Cave initLoc) {
 		super(initLoc);
+		this.desc = new String();
 	}
 	 
     /**
@@ -18,8 +19,8 @@ public class Filler extends Character {
      */
 	public boolean modifyCave(Cave loc){
 		if ( loc.isPit() ){
+			this.desc = "Filler filled the pit!";
 			loc.makeOpen();
-			
 			return true ; 
 		}else{
 			return false ; 
@@ -33,8 +34,9 @@ public class Filler extends Character {
 	 * If not, simply return false.
 	 */
     public boolean move(Cave to){
-		if (( to.isOpen() || this.modifyCave(to) || to.isTeleport()) && !to.isOccupied()){
+		if (( to.isOpen() || to.isPit() || to.isTeleport()) && !to.isOccupied()){
 			if ( to.isTeleport()){
+				this.desc +="\nSet teleport as marked";
 				to.setMarked(true);
 			}
 			super.move(to);
@@ -51,5 +53,14 @@ public class Filler extends Character {
 	public String getName(){
 		return "Filler";
 	}
+
+	@Override
+	public String describeModification() {
+		String temp = this.desc;
+		System.out.println(temp);
+		this.desc = "" ; 
+		return temp;
+	}
+	
 
 }

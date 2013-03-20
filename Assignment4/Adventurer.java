@@ -1,8 +1,9 @@
 
 public class Adventurer extends Character{
-	
+	private String desc ;
 	public Adventurer(Cave initLoc) {
 		super(initLoc);
+		this.desc = new String();
 	}
 
 	@Override
@@ -11,10 +12,15 @@ public class Adventurer extends Character{
 	}
 	
 	public boolean move(Cave to){
-		if ((to.isOpen()||to.isPit()||to.isMarked()||to.isTeleport())){
-			System.out.println("Rows In ok: "+to.getRow()+" Columns: "+to.getCol());
+		if ((to.isOpen()||to.isPit()||to.isTeleport())&&!to.isOccupied()){
+			
 			super.move(to);
-			this.location.setMarked(true);
+			//System.out.println("Rows In ok: "+to.getRow()+" Columns: "+to.getCol());
+			if (this.location.isTeleport()){
+				this.location.setMarked(true);
+				desc += "Adventurer marks teleport";
+			}
+			//this.location.setMarked(true);
 			return true;
 		}
 		else {
@@ -25,6 +31,15 @@ public class Adventurer extends Character{
 	public String getName() {
 		// TODO Auto-generated method stub
 		return "Adventurer";
+	}
+
+	@Override
+	public String describeModification() {
+		System.out.println(desc);
+		String temp = this.desc;
+		this.desc = "" ; 
+		
+		return temp;
 	}
 
 

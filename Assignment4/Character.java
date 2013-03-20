@@ -66,10 +66,5 @@ public abstract class Character extends Object implements CaveWorker {
 	
 	
 	
-	@Override
-	public String describeModification() {
-		// TODO Auto-generated method stub
-		
-		return null;
-	}
+	
 }

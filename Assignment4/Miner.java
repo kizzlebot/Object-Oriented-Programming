@@ -1,8 +1,9 @@
 
 public class Miner extends Character{
-
+	private String desc;
 	public Miner(Cave initloc){
 		super(initloc);
+		desc = new String();
 	}
 
 	/**
@@ -12,6 +13,7 @@ public class Miner extends Character{
 	 */
 	public boolean modifyCave(Cave loc){
 		if ( loc.isBlocked() ){
+			desc = "Miner Opened Cave";
 			loc.makeOpen();
 			return true ; 
 		}else{
@@ -27,8 +29,9 @@ public class Miner extends Character{
 	 * If not, simply return false.
 	 */
 	public boolean move(Cave to){
-		if ( (to.isOpen() || modifyCave(to)||to.isTeleport()||to.isPit()) && !to.isOccupied() ) {
+		if ( (to.isOpen() || to.isBlocked()||to.isTeleport()||to.isPit()) && !to.isOccupied() ) {
 			if (to.isTeleport()){
+				this.desc +="\nSet teleport as marked";
 				to.setMarked(true);
 			}
 			super.move(to);
@@ -43,7 +46,14 @@ public class Miner extends Character{
 	 * @return Name of this filler
 	 */
 	public String getName(){
-		return "Filler";
+		return "Miner";
+	}
+
+	@Override
+	public String describeModification() {
+		String temp = this.desc;
+		this.desc = "" ; 
+		return temp;
 	}
 	
 }
