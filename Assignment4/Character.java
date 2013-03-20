@@ -9,13 +9,20 @@
  * 
  * @author kizzle
  */
-public abstract class Character extends Object implements CaveWorker {
+
+// When an abstract class is subclassed, the subclass provides implementation (definition) of all abstract methods from its 
+// subclass. If it doesn't, the subclass must also be declared abstract too.  
+// An abstract class can contain the definition for the methods it contains or just its prototype without method body.
+public abstract class Character extends Object implements CaveWorker { 
+	// Extends : class inheritance - inheritance of public methods and public fields from superclass. Mainly for code reuse  																   
+	// Implements: Interface inheritance - classes that inherit interfaces must have definitions for the abstract methods in interface definition
+	
 	// The Cave that this character is occupying.	
 	protected Cave location;
 	
 	// Construct a character at initLoc
 	public Character(Cave initLoc){
-		
+		this.location = initLoc ; 
 	}
 	
 	/**
@@ -23,7 +30,7 @@ public abstract class Character extends Object implements CaveWorker {
 	 * @return
 	 */
 	public Cave getLocation(){
-		
+		return location;
 	}
 	
 	
@@ -34,22 +41,33 @@ public abstract class Character extends Object implements CaveWorker {
 	 * @return
 	 */
 	public boolean move (Cave to){
+		// Set Current location to unoccupied
+		this.location.setOccupied(false);
 		
+		// Set Next Location to Current location and mark occupied
+		this.location = to ; 
+		this.location.setOccupied(true);
+		if (this.location.isTeleport()){
+			this.location.setMarked(true);
+		}
+		return true; 
 	}
 
 	/**
 	 * Abstract method to get the name of this character. Any non-abstract class must implement this method. 
-	 * @return
+	 * @return Name 
 	 */
-	public abstract String getName();
+
+	// When an abstract class is subclassed, the subclass provides implementation (definition) of all abstract methods from its 
+	// subclass. If it doesn't, the subclass must also be declared abstract too.  
+	public abstract String getName(); 
+	
+	
 	
 	@Override
 	public String describeModification() {
 		// TODO Auto-generated method stub
-		return null;
-	}
-	@Override
-	public boolean modifyCave(Cave loc){
 		
+		return null;
 	}
 }

@@ -40,8 +40,8 @@ public class AdventureGame implements KeyListener,MouseListener {
 	
 	/** Start the first game. */
 	public AdventureGame() {
-		buildGui();
-		newGame();
+		buildGui();  // Create user Interface
+		newGame(); // 
 		updateGameBoard();
 	}
 	
