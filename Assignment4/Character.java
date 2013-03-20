@@ -23,6 +23,8 @@ public abstract class Character extends Object implements CaveWorker {
 	// Construct a character at initLoc
 	public Character(Cave initLoc){
 		this.location = initLoc ; 
+		this.location.makeOpen();
+		this.location.setOccupied(true);
 	}
 	
 	/**
@@ -30,7 +32,7 @@ public abstract class Character extends Object implements CaveWorker {
 	 * @return
 	 */
 	public Cave getLocation(){
-		return location;
+		return this.location;
 	}
 	
 	
@@ -48,7 +50,7 @@ public abstract class Character extends Object implements CaveWorker {
 		this.location = to ; 
 		this.location.setOccupied(true);
 		if (this.location.isTeleport()){
-			this.location.setMarked(true);
+			//this.location.setMarked(true);
 		}
 		return true; 
 	}

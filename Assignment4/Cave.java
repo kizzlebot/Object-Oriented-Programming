@@ -8,8 +8,6 @@
 public class Cave {
 	public static enum CaveType {
 		OPEN,BLOCKED,PIT,TELEPORT;
-		private static int row ; 
-		
 	}
 	
 	private Integer row ; 
@@ -102,9 +100,9 @@ public class Cave {
 	 * Mark this cave as blocked. 
 	 */
 	public void makeBlocked(){
-		//this.open = false;
-		//this.teleport = false;
-		//this.pit = false;
+		this.open = false;
+		this.teleport = false;
+		this.pit = false;
 		this.blocked = true; 
 	}
 	
@@ -113,9 +111,9 @@ public class Cave {
 	 */
 	public void makePit(){
 		this.pit = true;
-		//this.teleport = false;
-		//this.pit = true;
-		//this.blocked = false;
+		this.teleport = false;
+		this.open= false;
+		this.blocked = false;
 	}
 	/**
 	 * Mark this cave as open.
@@ -123,19 +121,17 @@ public class Cave {
 	 */
 	public void makeOpen(){
 		this.open = true;
-		//this.teleport = false;
-		//this.pit = false;
-		//this.blocked = false;
+		this.teleport = false;
+		this.pit = false;
+		this.blocked = false;
 	}
 	// Mark this cave as a teleport. 
 	public void makeTeleport(){
 		this.teleport = true;
-		//this.open = false;
-		//this.pit = false;
-		//this.blocked = false;
+		this.open = false;
+		this.pit = false;
+		this.blocked = false;
 	}
-
-	
 	/**
 	 * Set whether this cave is occupied. 
 	 * @param set Set whether occupied or not

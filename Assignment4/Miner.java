@@ -27,7 +27,10 @@ public class Miner extends Character{
 	 * If not, simply return false.
 	 */
 	public boolean move(Cave to){
-		if ( to.isOpen() || modifyCave(to)) {
+		if ( (to.isOpen() || modifyCave(to)||to.isTeleport()||to.isPit()) && !to.isOccupied() ) {
+			if (to.isTeleport()){
+				to.setMarked(true);
+			}
 			super.move(to);
 			return true; 
 		}

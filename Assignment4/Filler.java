@@ -19,11 +19,11 @@ public class Filler extends Character {
 	public boolean modifyCave(Cave loc){
 		if ( loc.isPit() ){
 			loc.makeOpen();
+			
 			return true ; 
 		}else{
 			return false ; 
 		}
-		
 	}
 	
 	/**
@@ -33,7 +33,10 @@ public class Filler extends Character {
 	 * If not, simply return false.
 	 */
     public boolean move(Cave to){
-		if ( to.isOpen() || this.modifyCave(to)){
+		if (( to.isOpen() || this.modifyCave(to) || to.isTeleport()) && !to.isOccupied()){
+			if ( to.isTeleport()){
+				to.setMarked(true);
+			}
 			super.move(to);
 			return true; 
 		}

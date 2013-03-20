@@ -98,15 +98,17 @@ public class Board {
 		 Random rand = new Random();
 		 int r = rand.nextInt(this.row) ; 
 		 int c = rand.nextInt(this.col) ;
-		 do{ 
-			 r = rand.nextInt(col) ; 
-			 c = rand.nextInt(row) ;
-			 if ( (r == 0 && c == 0 )||( c == this.col-1 && r == this.row -1)){
-				 r = rand.nextInt(col) ; 
-				 c = rand.nextInt(row) ;
-			 }
+		 boolean leave = false; 
+		 while (!leave){
+			
+			 c = rand.nextInt(col) ;
 			 
-		 }while (!caveArray[r][c].isOpen() && !caveArray[r][c].isOccupied() );
+			 r = rand.nextInt(row) ;
+			 if (caveArray[r][c].isOpen() && !caveArray[r][c].isOccupied()){
+				 break; 
+			 }
+		 }
+		 System.out.println("Moved to random+ "+row+" "+col);
 		 return caveArray[r][c]; 
 	}
 }
