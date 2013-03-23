@@ -6,19 +6,21 @@
  *        File: Board.java
  * Description: This class stores information about the board. It contains a 2D array of the board, made up of individual Cave spots.  
  *  			
- *  @author Mauricio Diaz
+ *  @author James Choi, Mauricio Diaz
  */
 import java.util.Random;
 
-
-
 public class Board {
 	
-	private Cave[][] caveArray ;  // gameboard instance
-	private int row ; 
-	private int col ; 
+	private Cave[][] caveArray ;  // gameboard instance, 2d array
+	private Integer row ;   // Hold onto these values for future ref
+	private Integer col ; // Hold onto these values for future ref 
 	
-	
+	/**
+	 * Constructor 
+	 * @param rows
+	 * @param cols
+	 */
 	public Board(int rows, int cols) {
 				
 		caveArray =  new Cave[rows][cols]; // Holy crap, you can make an multidimensional array of whatever!
@@ -66,7 +68,7 @@ public class Board {
 						cave.setOccupied(true);
 					}
 				}
-				caveArray[i][j] = cave ; 
+				caveArray[i][j] = cave ; // put into array 
 			}
 		}
 	}
@@ -78,8 +80,7 @@ public class Board {
 	 * @return The Cave stored at this location, or null if this spot is not on the board.
 	 */
 	public Cave getCave(int r,int c){
-		
-		if (ok(r, c)){
+		if (ok(r, c)){ // Check if r and c are valid
 			return caveArray[r][c] ; 
 		}
 		else {
@@ -104,23 +105,20 @@ public class Board {
 	/**
 	 * Get a random unoccupied, open location from the current state of the game board.
 	 * Guaranteed not to return the location of the treasure.
-	 * @return
+	 * @return a random unoccupied and open Cave object 
 	 */
 	public Cave getUnoccupiedOpenLocation(){
 		 Random rand = new Random();
-		 int r = rand.nextInt(this.row) ; 
+		 int r = rand.nextInt(this.row) ;  
 		 int c = rand.nextInt(this.col) ;
 		 boolean leave = false; 
 		 while (!leave){
-			
-			 c = rand.nextInt(col) ;
-			 
+			 c = rand.nextInt(col) ; 
 			 r = rand.nextInt(row) ;
-			 if (caveArray[r][c].isOpen() && !caveArray[r][c].isOccupied()){
+			 if (caveArray[r][c].isOpen() && !caveArray[r][c].isOccupied() && (caveArray[r][c].getCol() != this.col-1) && (caveArray[r][c].getRow() != this.row-1)){ 
 				 break; 
 			 }
 		 }
-		 //System.out.println("Moved to random+ "+row+" "+col);
 		 return caveArray[r][c]; 
 	}
 }

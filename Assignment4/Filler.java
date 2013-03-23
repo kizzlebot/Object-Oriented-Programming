@@ -38,7 +38,7 @@ public class Filler extends Character {
 	 * @return Boolean true if moved, else false
 	 */
     public boolean move(Cave to){
-		if (to.isOccupied()||to.isBlocked()||(to.getCol() == 9 && to.getRow() == 9 )){
+		if (to.isOccupied()||to.isBlocked()||(to.getCol() == 9 && to.getRow() == 9 )){ // if this 
 			return false; 
 		}
 		else {
@@ -59,9 +59,6 @@ public class Filler extends Character {
 	 */
 	@Override
 	public String describeModification() {
-		String temp = this.desc;
-		System.out.println(temp);
-		this.desc = "" ; 
-		return temp;
+		 return desc;
 	}
 }
