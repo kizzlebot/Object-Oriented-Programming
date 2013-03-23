@@ -22,13 +22,14 @@ public class Adventurer extends Character{
 	/**
 	 * Attempt to modify the cave at the given location. 
 	 * Adventurers modify a cave by marking it. 
+	 * Also Adventurers are immune to being teleported 
 	 */
 	@Override
 	public boolean modifyCave(Cave loc) {
 		if (loc.isTeleport()){
 			loc.setMarked(true);
 			desc += "Adventurer marks teleport";
-			return false;
+			return true;
 		}
 		else return false;
 	}
