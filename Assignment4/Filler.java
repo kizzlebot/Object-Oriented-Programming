@@ -1,9 +1,12 @@
 /**
- *  Class to represent a Filler. The Filler has a special ability to walk into pits 
- *  and fill the pit with sand so that it is safe for other characters to walk into
- *  this cave in the future. 
- *  @author kizzle
- *
+ *        Name: James Choi, Mauricio Diaz
+ *      Course: COP3330
+ *        Time: Monday/Wednesday/Friday
+ *  Assignment: Assignment4
+ *        File: Filler.java
+ * Description: Class/Object Definition to represent a Filler<-Character<-CaveWorker. The Filler has a special ability to walk into pits 
+ *  			and fill the pit with sand so that it is safe for other characters to walk into this cave in the future. 
+ *  @author James Choi
  */
 public class Filler extends Character {
 	private String desc ;
@@ -32,18 +35,16 @@ public class Filler extends Character {
 	 * This method checks to see if the Filler can actually move to this new location.
 	 * If so, it should make a call to the move method in the super class (which actually performs the move). 
 	 * If not, simply return false.
+	 * @return Boolean true if moved, else false
 	 */
     public boolean move(Cave to){
-		if (( to.isOpen() || to.isPit() || to.isTeleport()) && !to.isOccupied()){
-			if ( to.isTeleport()){
-				this.desc +="\nSet teleport as marked";
-				to.setMarked(true);
-			}
-			super.move(to);
-			return true; 
+		if (to.isOccupied()||to.isBlocked()||(to.getCol() == 9 && to.getRow() == 9 )){
+			return false; 
 		}
-		else 
-			return false;
+		else {
+			super.move(to);
+			return true;
+		}
 	}
 	
 	/**
@@ -53,7 +54,9 @@ public class Filler extends Character {
 	public String getName(){
 		return "Filler";
 	}
-
+	/**
+	 * @return A String describing what modification was made by this Filler to a pit. 
+	 */
 	@Override
 	public String describeModification() {
 		String temp = this.desc;
@@ -61,6 +64,4 @@ public class Filler extends Character {
 		this.desc = "" ; 
 		return temp;
 	}
-	
-
 }

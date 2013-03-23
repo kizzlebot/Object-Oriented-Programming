@@ -1,9 +1,12 @@
 /**
- * Name: 	James Choi
- * Course:  COP3330
- * Time: 	Monday/Wednesday/Friday
- * 
- * @author kizzle
+ *        Name: Mauricio Diaz, James Choi
+ *      Course: COP3330
+ *        Time: Monday/Wednesday/Friday
+ *  Assignment: Assignment4
+ *        File: CaveWorker.java
+ * Description: Interface for objects that implement CaveWorker 
+ *  			
+ *  @author James Choi
  */
 public interface CaveWorker {
 	/**
@@ -17,5 +20,4 @@ public interface CaveWorker {
 	 * @return
 	 */
 	public boolean modifyCave(Cave loc);
-	
 }

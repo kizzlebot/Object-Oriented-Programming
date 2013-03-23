@@ -1,6 +1,15 @@
-
+/**
+ *        Name: James Choi, Mauricio Diaz
+ *      Course: COP3330
+ *        Time: Monday/Wednesday/Friday
+ *  Assignment: Assignment4
+ *        File: Miner.java
+ * Description: Class definition for a miner character that implements methods declared in caveworker interface and abstract methods
+ * 				declared in Character abstract class 
+ */
 public class Miner extends Character{
 	private String desc;
+	
 	public Miner(Cave initloc){
 		super(initloc);
 		desc = new String();
@@ -13,8 +22,8 @@ public class Miner extends Character{
 	 */
 	public boolean modifyCave(Cave loc){
 		if ( loc.isBlocked() ){
-			desc = "Miner Opened Cave";
-			loc.makeOpen();
+			desc = "Miner Opened Cave"; // Describe the modification
+			loc.makeOpen();  // Make the cave open 
 			return true ; 
 		}else{
 			return false ; 
@@ -29,16 +38,13 @@ public class Miner extends Character{
 	 * If not, simply return false.
 	 */
 	public boolean move(Cave to){
-		if ( (to.isOpen() || to.isBlocked()||to.isTeleport()||to.isPit()) && !to.isOccupied() ) {
-			if (to.isTeleport()){
-				this.desc +="\nSet teleport as marked";
-				to.setMarked(true);
-			}
-			super.move(to);
-			return true; 
+		if (to.isOccupied() || (to.getCol()== 9 && to.getRow() == 9)) {	
+			return false; 
 		}
-		else 
-			return false;
+		else {
+			super.move(to);
+			return true;
+		}
 	}
 	
 	/**
@@ -48,12 +54,12 @@ public class Miner extends Character{
 	public String getName(){
 		return "Miner";
 	}
-
+	/**
+	 * @return String representing the modification made
+	 */
 	@Override
-	public String describeModification() {
-		String temp = this.desc;
-		this.desc = "" ; 
-		return temp;
+	public String describeModification() { 
+		return desc;
 	}
 	
 }

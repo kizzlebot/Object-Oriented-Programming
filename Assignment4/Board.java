@@ -1,5 +1,15 @@
+/**
+ *        Name: James Choi, Mauricio Diaz
+ *      Course: COP3330
+ *        Time: Monday/Wednesday/Friday
+ *  Assignment: Assignment4
+ *        File: Board.java
+ * Description: This class stores information about the board. It contains a 2D array of the board, made up of individual Cave spots.  
+ *  			
+ *  @author James Choi
+ */
 import java.util.Random;
-import java.util.TreeMap;
+
 
 
 public class Board {
@@ -7,13 +17,13 @@ public class Board {
 	private Cave[][] caveArray ;  // gameboard instance
 	private int row ; 
 	private int col ; 
-	TreeMap<Integer,Cave> intToCave = new TreeMap<Integer,Cave>();
-	TreeMap<Integer,TreeMap<Integer,Cave>> intToTree =  new TreeMap<Integer,TreeMap<Integer,Cave>>();
+	
+	
 	public Board(int rows, int cols) {
 				
-		caveArray =  new Cave[rows][cols];
-		this.intToCave = new TreeMap<Integer,Cave>();
-		this.intToTree =  new TreeMap<Integer,TreeMap<Integer,Cave>>();
+		caveArray =  new Cave[rows][cols]; // Holy crap, you can make an multidimensional array of whatever!
+		
+		
 		this.row = rows ; 
 		this.col = cols;
 		
@@ -52,7 +62,9 @@ public class Board {
 				// for first box and last box
 				if ((i == 0 && j == 0) || (i==rows-1 && j == cols-1) ){
 					cave.makeOpen();
-					cave.setOccupied(true);
+					if (i == 0 && j == 0 ){
+						cave.setOccupied(true);
+					}
 				}
 				caveArray[i][j] = cave ; 
 			}
