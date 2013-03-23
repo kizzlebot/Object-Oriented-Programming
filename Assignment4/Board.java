@@ -6,7 +6,7 @@
  *        File: Board.java
  * Description: This class stores information about the board. It contains a 2D array of the board, made up of individual Cave spots.  
  *  			
- *  @author James Choi
+ *  @author Mauricio Diaz
  */
 import java.util.Random;
 

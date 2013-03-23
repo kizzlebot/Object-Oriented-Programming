@@ -6,7 +6,7 @@
  *        File: Filler.java
  * Description: Class/Object Definition to represent a Filler<-Character<-CaveWorker. The Filler has a special ability to walk into pits 
  *  			and fill the pit with sand so that it is safe for other characters to walk into this cave in the future. 
- *  @author James Choi
+ *  @author Mauricio Diaz
  */
 public class Filler extends Character {
 	private String desc ;

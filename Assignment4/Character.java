@@ -7,7 +7,7 @@
  * Description: Abstract Class to store information about a general game character. 
  * 				Implements the CaveWorker interface declares methods operations a character can or can't perform on a cave, 
  * 				depending on the type of character. 
- * @author James Choi
+ * @author James Choi, Mauricio Diaz
  */
 
 /* 

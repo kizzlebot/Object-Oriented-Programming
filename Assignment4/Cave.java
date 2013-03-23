@@ -7,7 +7,7 @@
  * Description: Class to define a single cave location. Composed of the location of the cave on the grid, whether the cave
  * 				is occupied by a character, whether it is marked (teleport spots can be marked), and what type of cave it 
  * 				is (see Cave.CaveType). 
- * @author James Choi
+ * @author Mauricio Diaz
  */
 public class Cave {
 	public static enum CaveType {

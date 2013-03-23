@@ -4,9 +4,9 @@
  *        Time: Monday/Wednesday/Friday
  *  Assignment: Assignment4
  *        File: CaveWorker.java
- * Description: Interface for objects that implement CaveWorker 
+ * Description: Interface for objects that implement CaveWorker,  
  *  			
- *  @author James Choi
+ *  @author Mauricio Diaz, James Choi
  */
 public interface CaveWorker {
 	/**

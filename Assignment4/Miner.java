@@ -5,7 +5,8 @@
  *  Assignment: Assignment4
  *        File: Miner.java
  * Description: Class definition for a miner character that implements methods declared in caveworker interface and abstract methods
- * 				declared in Character abstract class 
+ * 				declared in Character abstract class
+ * @author James Choi,Mauricio Diaz 
  */
 public class Miner extends Character{
 	private String desc;

@@ -5,7 +5,7 @@
  *  Assignment: Assignment4
  *        File: Adventurer.java
  * Description: Class file for adventurer who is a character that implements methods declared in caveworker interface
- *        
+ * @author James Choi
  */
 
 public class Adventurer extends Character{
