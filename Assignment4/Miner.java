@@ -38,7 +38,7 @@ public class Miner extends Character{
 	 * If not, simply return false.
 	 */
 	public boolean move(Cave to){
-		if (to.isOccupied() || (to.getCol()== 9 && to.getRow() == 9)) {	
+		if (to.isOccupied() ) {	
 			return false; 
 		}
 		else {

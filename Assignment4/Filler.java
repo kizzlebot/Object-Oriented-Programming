@@ -38,7 +38,7 @@ public class Filler extends Character {
 	 * @return Boolean true if moved, else false
 	 */
     public boolean move(Cave to){
-		if (to.isOccupied()||to.isBlocked()||(to.getCol() == 9 && to.getRow() == 9 )){ // if this 
+		if (to.isOccupied()||to.isBlocked()){  
 			return false; 
 		}
 		else {

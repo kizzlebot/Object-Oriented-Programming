@@ -25,8 +25,8 @@ import javax.swing.JPanel;
  */
 public class AdventureGame implements KeyListener,MouseListener {
 	
-	public static final int DEFAULT_ROWS = 10;
-	public static final int DEFAULT_COLS = 10;
+	public static final int DEFAULT_ROWS = 15;
+	public static final int DEFAULT_COLS = 15;
 	
 	private JFrame frame;
 	private ImageLabel[][] grid;
@@ -48,19 +48,21 @@ public class AdventureGame implements KeyListener,MouseListener {
 	/** Build the initial GUI of the game board. */
 	private void buildGui() {
 		// Make the frame.
-		frame = new JFrame("Adventurer Assistance, Inc.");
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.setLayout(new BorderLayout());
-		
+		{
+			frame = new JFrame("Adventurer Assistance, Inc.");
+			frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+			frame.setLayout(new BorderLayout());
+		}
 		// Build the grid.
 		grid = new ImageLabel[DEFAULT_ROWS][DEFAULT_COLS];
 		JPanel gridPanel = new JPanel(new GridLayout(DEFAULT_ROWS,DEFAULT_COLS));
-		for (int i=0; i<grid.length; ++i)
+		for (int i=0; i<grid.length; ++i){
 			for (int j=0; j<grid[i].length; ++j) {
 				grid[i][j]=new ImageLabel("icons64/pit.png",i,j);
 				grid[i][j].addMouseListener(this);
 				gridPanel.add(grid[i][j]);
 			}
+		}
 		frame.add(gridPanel,BorderLayout.CENTER);
 		
 		// Add the status bar.
