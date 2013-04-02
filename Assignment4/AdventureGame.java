@@ -8,11 +8,12 @@ import java.awt.event.MouseListener;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.TreeMap;
-
 import javax.swing.BorderFactory;
+import javax.swing.Box;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JTextArea;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
@@ -25,8 +26,8 @@ import javax.swing.JPanel;
  */
 public class AdventureGame implements KeyListener,MouseListener {
 	
-	public static final int DEFAULT_ROWS = 15;
-	public static final int DEFAULT_COLS = 15;
+	public static final int DEFAULT_ROWS = 15; // Changed
+	public static final int DEFAULT_COLS = 15; // Changed
 	
 	private JFrame frame;
 	private ImageLabel[][] grid;
@@ -38,6 +39,18 @@ public class AdventureGame implements KeyListener,MouseListener {
 	
 	private boolean treasureClaimed;
 	
+	
+	
+//************************************************************************************************************************
+// New Stat Bar Objects  
+//************************************************************************************************************************
+	private Integer[] moves ;
+	private String[] statText ;
+	private JLabel statusBarTop;
+	private JTextArea textarea;
+//************************************************************************************************************************
+//************************************************************************************************************************
+
 	/** Start the first game. */
 	public AdventureGame() {
 		buildGui();  // Create user Interface
@@ -47,6 +60,7 @@ public class AdventureGame implements KeyListener,MouseListener {
 	
 	/** Build the initial GUI of the game board. */
 	private void buildGui() {
+		
 		// Make the frame.
 		{
 			frame = new JFrame("Adventurer Assistance, Inc.");
@@ -70,7 +84,23 @@ public class AdventureGame implements KeyListener,MouseListener {
 		statusBar.setBorder(BorderFactory.createLoweredBevelBorder());
 		frame.add(statusBar,BorderLayout.SOUTH);
 		
-		// Add the listener for key strokes.
+	
+//************************************************************************************************************************
+//************************************************************************************************************************
+		{
+			moves = new Integer[]{0,0,0,0};
+			statText = new String[]{ "Moves      \nAdventurer "+moves[0],"\nMiner "+moves[1],"\nFiller"+moves[2] }; 
+			statusBarTop = new JLabel();
+			statusBarTop.setBorder(BorderFactory.createLoweredBevelBorder());
+			
+			textarea = new JTextArea(statText[0]+statText[1]+statText[2]);
+			textarea.setEditable(false);
+			textarea.setFocusable(false);
+			Box fixedcol = Box.createVerticalBox();
+			fixedcol.add(textarea); 	
+			frame.add(fixedcol,BorderLayout.EAST);
+		}
+		
 		frame.addKeyListener(this);
 		frame.setFocusTraversalKeysEnabled(false);
 		
@@ -81,9 +111,11 @@ public class AdventureGame implements KeyListener,MouseListener {
 	
 	/** Initialize a new underlying game. */
 	private void newGame() {
+		{
+			moves[0] = moves[1] = moves[2] = moves[3] = 0 ; // Reset moves counter
+		}
 		// Set up the game board.
 		gameBoard = new Board(DEFAULT_ROWS, DEFAULT_COLS);
-		
 		// Set up the 3 characters.
 		characters = new ArrayList<Character>();
 		
@@ -109,6 +141,7 @@ public class AdventureGame implements KeyListener,MouseListener {
 	/** Update the visible state of the game board based on the internal state of the game. */
 	private void updateGameBoard() {
 		
+		updateMoves(); // Update Move counter everytime update gameboard is called
 		// Put icons on the board.
 		for (int i=0; i<grid.length; ++i)
 			for (int j=0; j<grid[i].length; ++j) {
@@ -141,7 +174,6 @@ public class AdventureGame implements KeyListener,MouseListener {
 					setBorder(BorderFactory.createBevelBorder(1, Color.red, Color.red));
 			}
 		}
-		
 		// Show the treasure if it's not already claimed.
 		if (!treasureClaimed)
 			grid[grid.length-1][grid[0].length-1].setIcon("icons64/treasure.png");
@@ -152,9 +184,16 @@ public class AdventureGame implements KeyListener,MouseListener {
 		statusBar.setText(msg);
 	}
 	
+	
+	private void updateMoves(){
+		statText[0]= "Moves\n\nAdventurer "+moves[0];
+		statText[1] = "\nMiner "+moves[1];
+		statText[2] = "\nFiller "+moves[2] ;
+		moves[3] = moves[0]+moves[1]+moves[2];
+		textarea.setText(statText[0]+statText[1]+statText[2]+" \n\nOverall: "+moves[3]);
+	}
 	/** Handle user input from keyboard. */
 	public void keyPressed(KeyEvent e) {
-		
 		// Check if this is a tab event to move characters.
 		if (e.getKeyCode()==KeyEvent.VK_TAB) {
 			selected=(selected+1)%characters.size();
@@ -193,8 +232,8 @@ public class AdventureGame implements KeyListener,MouseListener {
 			return;
 		}
 		
-		// Make the move.
 		Character ch = characters.get(selected);
+		// Make the move.
 		Cave c = ch.getLocation();
 		if (gameBoard.ok(c.getRow()+dr,c.getCol()+dc)) {
 			Cave newC = gameBoard.getCave(c.getRow()+dr, c.getCol()+dc);
@@ -207,13 +246,22 @@ public class AdventureGame implements KeyListener,MouseListener {
 			
 			// Try and make the move.
 			else if (ch.move(newC)) {
-				
+				if (ch.getName() == "Adventurer"){
+					moves[0]++ ; 
+				}else if(ch.getName() == "Miner"){
+					moves[1]++;
+				}
+				else{
+					moves[2]++;
+				}
+					
 				// Try and modify this cave is possible.
 				CaveWorker cw = ch;
 				if (cw.modifyCave(newC)) {
 					updateGameBoard();
 					updateStatus(ch.getName()+" successfully moved and "+
 							cw.describeModification()+"!");
+					
 				}
 				else if (newC.isPit()) { // This character falls in the pit and dies.
 					updateStatus(ch.getName()+" fell in the pit and died!");
@@ -223,13 +271,38 @@ public class AdventureGame implements KeyListener,MouseListener {
 					updateGameBoard();
 					if (ch instanceof Adventurer) {
 						if (!treasureClaimed) {
-							JOptionPane.showMessageDialog(frame, ch.getName()+" is now dead :( " +
-									"No way to get the treausre now. Better luck next time!");
+//************************************************************************************************************************
+//************************************************************************************************************************
+							int x = JOptionPane.showConfirmDialog(frame, ch.getName() + " is now dead :( " +
+									"No way to get the treasure now. Better luck next time!\n Restart?");
+							System.out.println(x);
+							if ( x == 0 ){
+								newGame();
+								updateGameBoard(); 
+								return ; 
+							}else if ( x == 1 ){
+								System.exit(0);
+							}
+							else{
+								
+							}
 						}
 						else {
-							JOptionPane.showMessageDialog(frame, ch.getName()+" is now dead :( " +
-									"She fell in the pit and took all the treasure with her!");
+							int x = JOptionPane.showConfirmDialog(frame, ch.getName()+" is now dead :( " +
+									"She fell in the pit and took all the treasure with her!\nRestart?");
+							if ( x == 0 ){
+								newGame();
+								updateGameBoard(); 
+								return ; 
+							}else if ( x == 1 ){
+								System.exit(0);
+							}
+							else{
+								
+							}
 						}
+//************************************************************************************************************************
+//************************************************************************************************************************
 					}
 				}
 				else if (newC.isTeleport()) { // Transport this character to a random location.
@@ -247,9 +320,19 @@ public class AdventureGame implements KeyListener,MouseListener {
 						newC.getCol()==DEFAULT_COLS-1 && ch instanceof Adventurer) {
 					treasureClaimed = true;
 					updateGameBoard();
-					JOptionPane.showMessageDialog(frame, ch.getName()+" has claimed the treasure!" +
-							" Fame and fortune are now yours!");
-					updateStatus("Keep exploring if you desire!");
+					int x = JOptionPane.showConfirmDialog(frame, ch.getName()+" has claimed the treasure!" +
+							" Fame and fortune are now yours!\n\nCompleted in: "+moves[3]+" moves"+"\nRestart?");
+					if ( x == 0 ){
+						newGame();
+						updateGameBoard(); 
+						return ; 
+					}else if ( x == 1 ){
+						System.exit(0);
+					}
+					else{
+						
+					}
+					//updateStatus("Keep exploring if you desire!");
 				}
 			}
 			else if (newC.isBlocked()) { // No move can be made.
