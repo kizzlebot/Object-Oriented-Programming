@@ -1,3 +1,13 @@
+/**
+ *        Name: James Choi
+ *      Course: COP3330
+ *        Time: Monday/Wednesday/Friday
+ *  Assignment: Assignment4
+ *        File: CaveWorker.java
+ * Description: Interface for objects that implement CaveWorker,  
+ *  			
+ *  @author  James Choi
+ */
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.GridLayout;

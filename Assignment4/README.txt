@@ -1,4 +1,5 @@
 Extra Credit Changes from Original
+Only Edited AdventureGame.java
 - Added Sidebar containing overall moves 
 - Changed Icons
 - Added Restart, Quit, or explore pop up on finding treasure
