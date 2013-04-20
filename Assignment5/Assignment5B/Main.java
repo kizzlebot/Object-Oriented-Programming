@@ -10,6 +10,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.util.ArrayList;
 import java.util.Random;
 
 import javax.swing.JButton;
@@ -21,14 +22,18 @@ import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
 
-
+/**
+ * 
+ * @author kizzle
+ *
+ */
 public class MainPanel extends JPanel{
 	// Constraints for the GribBag Layout
 	GridBagConstraints gbc = new GridBagConstraints();
 	
 	
-	private Integer recursionInput ;  // Value that is inside
-	private Color[] comboSelection ;
+	private Integer recursionInput ;  // Value that is inside textFieldBox
+	private Color[] comboSelection ;  // ComboBox selections
 	private TriCanvas triCanvas ;
 	public MainPanel(){
 		
@@ -49,15 +54,20 @@ public class MainPanel extends JPanel{
 		add(sidepan,gbc);
 		
 	}
-	
-	public class SidePanel extends JPanel {
+	/**
+	 * Sets up the SidePanel objects
+	 * @author kizzle
+	 *
+	 */
+	private class SidePanel extends JPanel {
 		// Holds all the comboBox instances
 		public Combo[] combo;
 		// DrawButton
 		public JButton drawButton; 
+		public Boolean ranonce ; 
 		public SidePanel(){
 			// Get the contentPane of itself
-			
+			ranonce = false;
 			setLayout(new GridLayout(1,1)); // Set the layout
 			
 			// Add the components
@@ -100,9 +110,6 @@ public class MainPanel extends JPanel{
 				@Override
 				public void actionPerformed(ActionEvent e) {
 					// TODO Auto-generated method stub
-					
-					// get the comboBox selections
-					
 					triCanvas.run();
 				}
 			});
@@ -175,15 +182,15 @@ public class MainPanel extends JPanel{
 		    }
 		}
 	}
-	public class TriCanvas extends Canvas implements Runnable{
+	private class TriCanvas extends Canvas implements Runnable{
 		private Polygon poly;
 		
 		//private JFrame frame ;
-		private Graphics g ; 
+		private ArrayList<Color> aList ;
 		public TriCanvas(){
+			aList = new ArrayList<Color>();
 			setSize(512,512);
 			setBackground(Color.BLACK);
-			
 		}
 		public void draw(int d, int x, int y, int S) { // Done drawing, stop.
 			if ( d == 0 ){
@@ -191,27 +198,34 @@ public class MainPanel extends JPanel{
 			}
 			int[] X = {x,x+S,x+(S/2)};
 			int[] Y = {y+S,y+S,y};
-			poly = new Polygon(X,Y,X.length);
 			
-			paint(getGraphics());
+			poly = new Polygon(X,Y,X.length);
+			try{
+				paint(getGraphics());
+			
+			}catch(NullPointerException ex){
+				System.out.println("NullPointer Exception");
+			}
 			draw(d-1, x+(S/4), y      , (S/2));
 			draw(d-1, x      , y+(S/2), (S/2));
 			draw(d-1, x+(S/2), y+(S/2), (S/2)); 
 		}
 		
-		public void paint(Graphics g){
-			g.setColor(Color.WHITE);
+		public void paint(Graphics g){		
+			//g.setColor(comboSelection[colorIterateNum]);
+			g.setColor(Color.RED);
+			
 			g.drawPolygon(poly);
 		}
 		@Override
 		public void run() {
-			// TODO Auto-generated method stub
-			try{
-				draw(recursionInput,0,0,this.getWidth());
+			super.paint(getGraphics()); // Clear the Canvas
+			if ( recursionInput > comboSelection.length){
+				for (int i = 0 ; i < comboSelection.length ; i++){
+					aList.add();
+				}
 			}
-			catch(NullPointerException ex){
-				update(getGraphics());
-			}
+			draw(recursionInput,0,0,this.getWidth()); // Draw one on the canvas recursively
 		}
 	}
 
