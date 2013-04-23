@@ -33,6 +33,7 @@ import javax.swing.SwingConstants;
  * Contains all the necessary components and logic for rendering the Sierpinski
  * @author kizzle
  */
+@SuppressWarnings("All")
 public class SierpinskiVisualizer {
 
 	private static final int SIZE = 512; // should be a power of 2
