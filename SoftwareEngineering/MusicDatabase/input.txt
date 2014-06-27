@@ -1,0 +1,79 @@
+11
+
+The Beetles
+Hey Dude (Keep Coding)
+09/09/09
+Rock, Pop
+8.9
+false
+
+Journey to that A
+Don't Stop Believin' in Yourself
+01/31/13
+Rock, Dance/Electronic
+9.2
+false
+
+The Chaincoders
+Let Me Make a Jpeg
+03/21/12
+Dance/Electronic, Indie
+8.9
+true
+
+Ferrell Williams
+Happy (...That I'm in This Awesome Class)
+01/02/12
+Hip-Hop/R&B, Billboard
+5.7
+true
+
+Students of COP 4331
+We're Gonna Get Through This
+11/11/11
+Indie, Dance/Electronic
+9.3
+false
+
+Britney's Pears
+Stop Screamin' & Stop Shoutin' (This is a Library)
+10/01/10
+Pop
+7.7
+true
+
+Bryan Luke
+Won't Stop Playin'
+01/04/14
+Country, Billboard
+5.7
+true
+
+Johnny Legendary
+None of You
+10/10/13
+Hip-Hop/R&B, Billboard, Pop
+6.4
+true
+
+Students of COP 4331
+All I Want for Christmas (is an A in This Class)
+03/30/13
+Holiday, Indie, Casual
+8
+false
+
+Johnny Legendary
+Both of Us
+03/01/13
+Hip-Hop/R&B
+5.7
+true
+
+The Black Eyed Keys
+I Got a Fever (But Tonight's Gonna Be a Good Night)
+12/12/12
+Billboard, Pop, Hip-Hop/R&B, Rock
+9.9
+true
+
