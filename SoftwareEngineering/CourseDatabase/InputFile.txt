@@ -1,0 +1,114 @@
+4
+
+Introduction to Computer Science
+
+Alice Taylor
+9/15/2014
+324
+3
+
+Bob Fisher
+8/13/2014
+1222
+8
+
+Carol Bruckner
+8/16/2014
+123
+1
+
+Kevin Smith
+10/1/2014
+68
+0
+
+Object-Oriented Programming with Java
+
+Steven McKeel
+3/28/2014
+2101
+19
+
+Bob Fisher
+8/13/2014
+632
+3
+
+Elizabeth Thomas 
+8/12/2014
+459
+10
+
+James Williams
+2/12/2014
+123
+0
+
+Darnell Jones 
+12/29/2013
+2893
+22
+
+Advanced Computer Architecture
+
+Alice Taylor
+9/17/2014
+208
+6
+
+Jasmin Wright
+8/13/2014
+1239
+12
+
+Katelyn Stark
+8/12/2014
+2
+0
+
+Trevon Johnson
+8/12/2014
+212
+3
+
+Lloyd Campbell
+9/1/2014
+102
+1
+
+Jessica Harris
+9/3/2014
+312
+4
+
+Algorithms and Data Structures
+
+Kyle Robinson
+10/5/2014
+12
+0
+
+Samatha Collins
+8/13/2014
+1220
+24
+
+Robin Moore
+7/11/2014
+322
+2
+
+Javier Silva
+7/18/2014
+954
+5
+
+Pablo Garcia
+3/23/2014
+235
+2
+
+Arvind Balasubramanian
+5/23/2014
+1222
+12
